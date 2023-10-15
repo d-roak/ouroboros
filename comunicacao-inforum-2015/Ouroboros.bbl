@@ -1,0 +1,98 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arak(2007)]{skypefails}
+Villu Arak.
+\newblock {Skype Blog:} what happened on august 16, August 2007.
+\newblock URL
+  \url{http://heartbeat.skype.com/2007/08/what_happened_on_august_16.html}.
+
+\bibitem[Jelasity et~al.(2009)Jelasity, Montresor, and Babaoglu]{tman}
+M{\'a}rk Jelasity, Alberto Montresor, and Ozalp Babaoglu.
+\newblock {T-Man}: {G}ossip-based fast overlay topology construction.
+\newblock \emph{Journal Computer Networks: The International Journal of
+  Computer and Telecommunications Networking}, 53\penalty0 (13):\penalty0 2321
+  -- 2339, August 2009.
+
+\bibitem[Lakshman and Malik(2010)]{cassandra}
+Avinash Lakshman and Prashant Malik.
+\newblock {Cassandra}: {A} decentralized structured storage system.
+\newblock \emph{{ACM SIGOPS} Operating Systems Review}, 44\penalty0
+  (2):\penalty0 35 -- 40, April 2010.
+
+\bibitem[Legtchenko et~al.(2012)Legtchenko, Monnet, Sens, and Muller]{relaxdht}
+Sergey Legtchenko, S{\'e}bastien Monnet, Pierre Sens, and Gilles Muller.
+\newblock Relaxdht: A churn-resilient replication strategy for peer-to-peer
+  distributed hash-tables.
+\newblock \emph{ACM Trans. Auton. Adapt. Syst.}, 7\penalty0 (2):\penalty0
+  28:1--28:18, July 2012.
+\newblock ISSN 1556-4665.
+
+\bibitem[Leit{\~a}o(2012)]{tese}
+J.~Leit{\~a}o.
+\newblock \emph{Topology Management for Unstructured Overlay Networks}.
+\newblock PhD thesis, Technical University of Lisbon, September 2012.
+
+\bibitem[Leitão et~al.(2007)Leitão, Pereira, and Rodrigues]{hyparview}
+J.~Leitão, J.~Pereira, and L.~Rodrigues.
+\newblock Hyparview: A membership protocol for reliable gossip-based broadcast.
+\newblock In \emph{Dependable Systems and Networks, 2007. DSN '07. 37th Annual
+  IEEE/IFIP International Conference on}, pages 419--429, June 2007.
+
+\bibitem[Leitão et~al.(2012)Leitão, Marques, Pereira, and Rodrigues]{xbot}
+J.~Leitão, J.P. Marques, J.~Pereira, and L.~Rodrigues.
+\newblock X-bot: A protocol for resilient optimization of unstructured overlay
+  networks.
+\newblock \emph{Parallel and Distributed Systems, IEEE Transactions on},
+  23\penalty0 (11):\penalty0 2175--2188, Nov 2012.
+
+\bibitem[Montresor et~al.(2005)Montresor, Jelasity, and Babaoglu]{tchord}
+A.~Montresor, M.~Jelasity, and O.~Babaoglu.
+\newblock Chord on demand.
+\newblock In \emph{Peer-to-Peer Computing, 2005. P2P 2005. Fifth IEEE
+  International Conference on}, pages 87--94, Aug 2005.
+
+\bibitem[Rowstron and Druschel(2001)]{pastry}
+Antony Rowstron and Peter Druschel.
+\newblock {Pastry}: {S}calable, decentralized object location, and routing for
+  large-scale peer-to-peer systems.
+\newblock In \emph{Proceedings of the {IFIP/ACM} International Conference on
+  Distributed Systems Platforms Heidelberg ({Middleware'01})}, pages 329 --
+  350, Heidelberg, Germany, November 2001.
+
+\bibitem[Shafaat et~al.(2007)Shafaat, Ghodsi, and Haridi]{chordbreaks}
+Tallat Shafaat, Ali Ghodsi, and Seif Haridi.
+\newblock Handling network partitions and mergers in structured overlay
+  networks.
+\newblock In \emph{Proceedings of the 7th {IEEE} International Conference on
+  Peer-to-Peer Computing ({P2P'07})}, pages 132 -- 139, Galway, Ireland,
+  September 2007.
+
+\bibitem[Stoica et~al.(2003)Stoica, Morris, Liben-Nowell, Karger, Kaashoek,
+  Dabek, and Balakrishnan]{chord}
+Ion Stoica, Robert Morris, David Liben-Nowell, David~R. Karger, M.~Frans
+  Kaashoek, Frank Dabek, and Hari Balakrishnan.
+\newblock Chord: A scalable peer-to-peer lookup protocol for internet
+  applications.
+\newblock \emph{IEEE/ACM Trans. Netw.}, 11\penalty0 (1):\penalty0 17--32,
+  February 2003.
+\newblock ISSN 1063-6692.
+
+\bibitem[Stutzbach and Rejaie(2006)]{churn}
+Daniel Stutzbach and Reza Rejaie.
+\newblock Understanding churn in peer-to-peer networks.
+\newblock In \emph{Proceedings of the 6th {ACM SIGCOMM} Conference on Internet
+  Measurement ({IMC'06})}, pages 189 -- 202, Rio de Janeriro, Brazil, October
+  2006.
+
+\bibitem[Zhang and Mislove({2013})]{privio}
+Liang Zhang and Alan Mislove.
+\newblock {Building confederated Web-based services with Priv.io}.
+\newblock In \emph{{Proceedings of the 1st ACM Conference on Online Social
+  Networks (COSN'13)}}, {Boston, MA}, {October} {2013}.
+
+\end{thebibliography}

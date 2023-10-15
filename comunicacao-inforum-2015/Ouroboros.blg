@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Ouroboros.aux
+The style file: plainnat.bst
+Database file #1: bibliography.bib
+You've used 13 entries,
+            2773 wiz_defined-function locations,
+            679 strings with 7508 characters,
+and the built_in function-call counts, 6963 in all, are:
+= -- 643
+> -- 368
+< -- 11
++ -- 124
+- -- 111
+* -- 570
+:= -- 1014
+add.period$ -- 41
+call.type$ -- 13
+change.case$ -- 75
+chr.to.int$ -- 13
+cite$ -- 26
+duplicate$ -- 325
+empty$ -- 572
+format.name$ -- 132
+if$ -- 1504
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 11
+newline$ -- 75
+num.names$ -- 52
+pop$ -- 161
+preamble$ -- 1
+purify$ -- 63
+quote$ -- 0
+skip$ -- 252
+stack$ -- 0
+substring$ -- 336
+swap$ -- 77
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 143
+warning$ -- 0
+while$ -- 61
+width$ -- 0
+write$ -- 182

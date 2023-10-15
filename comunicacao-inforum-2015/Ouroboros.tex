@@ -1,0 +1,133 @@
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[runningheads,a4paper]{template/llncs}
+%\documentclass[twocolumn,runningheads,a4paper]{template/llncs_v2}
+\usepackage{amssymb}
+%\usepackage[]{inputenc}
+\usepackage{isolatin1}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{todonotes}
+\usepackage[nonumberlist,translate=babel, acronym]{glossaries}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{geometry}
+\geometry{
+  a4paper,         % or letterpaper
+  textwidth=15cm,  % llncs has 12.2cm
+  textheight=24cm, % llncs has 19.3cm
+  heightrounded,   % integer number of lines
+  hratio=1:1,      % horizontally centered
+  vratio=2:3,      % not vertically centered
+}
+
+\renewcommand{\baselinestretch}{.97}
+
+\renewcommand\bibname{Referências}
+\renewcommand\refname{Referências}
+
+\makeatletter 
+\renewcommand\bibsection
+{ \section*{\refname
+	\@mkboth{\MakeUppercase{\refname}}{\MakeUppercase{\refname}}}
+}
+\makeatother
+
+%\loadglsentries{acronyms}
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+\let\oldsection\section
+\renewcommand{\section}[1]{
+\vspace{-0.2cm}
+\oldsection{#1}
+\vspace{-0.2cm}
+}
+
+%%%%%%%%%
+%CABEÇALHO%
+%%%%%%%%%
+\title{Ouroboros: Uma DHT Auto-organizável Tolerante a \emph{Churn}}
+
+\titlerunning{Ouroboros: Uma DHT Auto-organizável Tolerante a \emph{Churn}}
+
+\author{João Carvalho, Nuno Preguiça, João Leitão}
+
+\authorrunning{João Carvalho, Nuno Preguiça, João Leitão}
+
+\institute{NOVA LINCS \& Faculdade de Ciências e Tecnologia, Universidade Nova de Lisboa}
+
+\setcounter{secnumdepth}{3}
+
+\maketitle
+
+%%%%%%%%%
+%MOTIVAÇÃO %
+%%%%%%%%%
+\section{Motivação}
+As tabelas de dispersão distribuídas (DHT, do inglês \emph{Distributed Hash Table}) foram propostas há mais de 10 anos como uma componente de suporte a aplicações distribuídas de grande escala.
+As DHT's foram utilizadas em vários contextos, como o suporte para aplicações entre-pares (\emph{Peer-to-Peer})\,\cite{tese} assim como na computação em nuvem, onde as DHT's são frequentemente utilizadas no desenho de bases de dados distribuídas, como por exemplo no Cassandra\,\cite{cassandra}.
+
+O sucesso das DHT's deve-se ao seu desenho descentralizado, o que lhes permite ser altamente escaláveis.
+%sendo que tipicamente, permitem o encaminhamento lógico de mensagens entre nós do sistema, com complexidade logarítmica em relação ao tamanho do sistema. Estas propriedades advém do facto das DHT's basearem-se numa rede lógica com topologia estruturada, que é estabelecida entre os vários nós do sistema, tipicamente baseada nos seus identificadores (uma cadeia longa de bits).
+%Apesar de existirem inúmeros algoritmos para gerirem estas topologias na literatura\,\cite{chord,pastry,kelips,tchord},
+Na sua essência a maioria das DHT's recorre a um anel\,\cite{chord, pastry} que liga os nós do sistema de acordo com o seu identificador. O correcto funcionamento de uma DHT depende da manutenção de uma topologia em anel entre os nós. As DHT's usualmente recorrem ainda a um conjunto de ligações adicionais entre os nós (\emph{ponteiros}) para acelerar a navegação no anel\,\cite{chord,pastry}. 
+
+Apesar da eficiência alcançada através do uso de topologias estruturadas baseadas em anéis, existem vários aspetos negativos que limitam o uso das DHT's na prática, sendo o mais relevante o facto de estas apresentarem uma baixa tolerância a \emph{churn}\footnote{Churn é um fenómeno caracterizado pela entrada e saída simultânea de vários nós no sistema\,\cite{churn}.}, durante o qual a estrutura do anel pode ficar comprometida, levando à formação de múltiplos anéis independentes ou outras incorreções na topologia\,\cite{chordbreaks}. Este fenómeno foi observado na prática quando a DHT que suportava o índice distribuído do Skype falhou devido a um fenómeno de \emph{churn}, o que levou à indisponibilidade do serviço por um período superior a $24$ horas\,\cite{skypefails}.
+
+Observamos que a baixa tolerância a \emph{churn} exibida pelas DHT's tem como base o facto dos algoritmos usados para estabelecer e gerir a topologia, dependerem da correção da topologia do anel, condição essa que tipicamente não é válida durante períodos de \emph{churn}. Neste trabalho pretendemos endereçar esta limitação das DHT's recorrendo ao uso de técnicas comumente usadas na gestão de topologias dinâmicas não estruturadas (\emph{i.e,} aleatórias) seguindo metodologias  encontradas em propostas anteriores como nos protocolos T-Man\,\cite{tman} e X-Bot\,\cite{xbot}. 
+
+Com o aparecimento de novas tecnologias, como o \emph{Web Real Time Communication} (\emph{WebRTC}), que permite ligações directas e transparentes entre \emph{browsers}, existe um novo interesse no desenho de DHT's altamente eficientes e robustas, para suportarem novas aplicações web enriquecidas com modelos de comunicação entre-pares\,\cite{privio}.
+
+%%%%%%%%%
+% PROPOSTA  %
+%%%%%%%%%
+\section{Proposta}
+Para ultrapassar as limitações nos desenhos das DHT's, propomos o \emph{Ouroboros}\footnote{Ouroboros é um símbolo representado por uma serpente a comer a sua própria cauda, simbolizando o contínuo renascimento e transformação (\url{https://en.wikipedia.org/wiki/Ouroboros}).}, um novo algoritmo auto-organizável para a gestão de topologias de DHT's baseadas em anel.
+No \emph{Ouroboros} recorremos ao uso de duas vistas parciais, uma vista ativa e outra passiva. A vista ativa de um nó $n$ guarda a informação sobre os nós que são vizinhos diretos de $n$ no anel e dos nós que são usados por $n$ como ponteiros para acelerar a navegação no anel. Em contraste, a vista passiva de $	n$ mantém uma amostra dinâmica e aleatória (de tamanho limitado) dos nós no sistema, que é mantida através de um processo de rumor (do inglês \emph{gossip}) executado entre todos os nós do sistema. O uso de duas vistas parciais para fins diferentes foi originalmente proposto no HyParView \cite{hyparview}.
+
+Quando um novo nó $n'$ entra no sistema, este determina a sua posição no anel recorrendo ao mecanismo de encaminhamento disponibilizado pela DHT. Neste processo, $n'$ recolhe também alguma informação sobre a filiação do sistema que este usa para inicializar a sua vista passiva. Uma vez que a posição inicial atribuída a $n'$ neste processo pode estar errada, devido a erros na topologia, recorremos a um protocolo inspirado na abordagem proposta pelo X-Bot\,\cite{xbot}. 
+Esta abordagem permite a cada nó $p$ utilizar continuamente os conteúdos da sua vista passiva, para ajustar os conteúdos da sua vista activa. Note-se que os conteúdos da vista passiva de $p$ não dependem da topologia definida pela sua vista activa, visto que esta é gerida por um processo de rumor totalmente aleatório. Consequentemente, ainda que o anel se encontre numa configuração errada, a vista passiva de $p$ pode conter os identificadores do sucessor e antecessor desse nó, permitindo a $p$ corrigir a topologia localmente.
+Assim garante-se que o anel e os ponteiros adicionais adaptam-se continuamente e que a DHT se auto-organiza e converge continuamente para a configuração correta. Contrariamente ao proposto no X-Bot\,\cite{xbot}, no Ouroboros este processo adapta a vista ativa de cada nó usando dois critérios complementares: $i)$ cada nó conhece e liga-se ao seu sucessor e antecessor adequados; $ii)$ enviesa os ponteiros extra mantidos na vista activa de forma a promover ligações de baixa latência.
+
+%%%%%%%%%
+%DISCUSSÃO %
+%%%%%%%%%
+\section{Sumário \& Discussão}
+O objectivo primário deste trabalho é assegurar que a topologia da DHT consegue recuperar de fenómenos de \emph{churn}. Para isso, e contrariamente a outras propostas na literatura (\emph{e.g,} \cite{relaxdht,chord,pastry}), recorremos a um conjunto de técnicas usualmente utilizadas para gerir redes sobrepostas não estruturadas\,\cite{hyparview,xbot}, para permitir que cada nó tem a capacidade de corrigir erros na topologia. Um aspecto essencial neste processo é o uso de uma segunda vista cujos conteúdos são independentes da topologia da DHT, o que torna o processo de identificação dos vizinhos corretos independente do estado da topologia. O trabalho mais próximo encontrado na literatura é o T-Chord\,\cite{tchord} que recorre aos mecanismos do algoritmo distribuído T-Man\,\cite{tman}. No entanto, e como demonstrado anteriormente, o T-Man não protege a conetividade global da rede, podendo por isso levar a topologia da DHT a quebrar\,\cite{xbot}. Para além disso, os autores deste trabalho não abordam cenários com \emph{churn}.
+
+Adicionalmente, tiramos proveito da natureza dinâmica da vista passiva mantida por cada nó, de forma a enviesar os ponteiros mantidos por cada nó para promover ligações de baixa latência, otimizando assim os tempos de comunicação e encaminhamento de mensagens sobre a DHT. %Este processo requer ainda uma adaptação dos mecanismos de encaminhamento da DHT.
+ 
+ \renewcommand{\baselinestretch}{.96}
+ 
+\vspace{-0.2cm}
+\let\section\oldsection
+\bibliographystyle{plainnat}
+\begin{footnotesize}
+\bibliography{bibliography}
+\end{footnotesize}
+
+
+\end{document}
